@@ -1,0 +1,4 @@
+*.yaml
+SECRET
+.env
+/backup
