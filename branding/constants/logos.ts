@@ -4,11 +4,13 @@ export default {
   LOGO_HEADER_PATH: '/img/custom/logo-horizontal.svg',
   LOGO_HEADER_WIDTH: '47px',
   LOGO_HEADER_CLICK: {
-    externalLink: {
-      url: 'https://yunite.org',
-      target: '',
+    externalLink: null,
+    internalPath: {
+      to: {
+        name: 'index',
+      },
+      scrollTo: '.main-navigation',
     },
-    internalPath: null,
   },
   LOGO_SIGNUP_PATH: '/img/custom/logo-squared.svg',
   LOGO_WELCOME_PATH: '/img/custom/logo-squared.svg',

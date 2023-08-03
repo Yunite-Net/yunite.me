@@ -54,7 +54,11 @@ const IMPRINT = defaultPageParamsPages.IMPRINT.overwrite({
   },
 })
 const TERMS_AND_CONDITIONS = defaultPageParamsPages.TERMS_AND_CONDITIONS.overwrite({
-  // externalLink: null, // if defined it's dominating
+  // if defined it's dominating
+  externalLink: {
+    url: 'https://yunite.org/nutzungsbedingungen/',
+    target: '',
+  },
 
   internalPage: {
     // footerIdent: 'site.termsAndConditions', // localized string identifier, if undefined default is used

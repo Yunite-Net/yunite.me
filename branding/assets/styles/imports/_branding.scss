@@ -32,6 +32,11 @@ $color-donation-bar: $color-secondary;
 $color-toast-blue: rgb(0, 142, 230);
 $color-toast-green: $color-primary;
 
+$chat-message-bg-me: $color-primary-light;
+$chat-message-checkmark-seen: $color-secondary;
+$chat-message-checkmark: $text-color-inverse;
+$chat-room-color-counter-badge: $color-primary;
+$chat-room-background-counter-badge: $color-secondary;
 
 .main-navigation a {
   color: #fff;

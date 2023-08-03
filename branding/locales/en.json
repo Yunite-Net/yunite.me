@@ -1,4 +1,7 @@
 {
+  "search": {
+    "hint": "@... searches users, &... searches groups, !... searches posts, #… searches hashtags"
+  },
   "yuniteRebranding": {
     "header": {
       "about": "About Yunite",
