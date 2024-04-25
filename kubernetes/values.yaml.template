@@ -89,6 +89,7 @@ NEO4J:
   #APOC_IMPORT_FILE_ENABLED: "true" # HC value
   APOC_IMPORT_FILE_ENABLED: "false" # default
   DBMS_SECURITY_PROCEDURES_UNRESTRICTED: "algo.*,apoc.*"
+  DBMS_DEFAULT_DATABASE: "neo4j"
 
 MAINTENANCE:
   # change all the below if needed
