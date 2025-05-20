@@ -1,0 +1,12 @@
+#{{ $branded_image_tag:= env "BRANDED_IMAGE_TAG" | default (exec "../scripts/branded_image_tag.sh" (list) | trim) }}
+#{{ $ocelot_image_tag := env "OCELOT_IMAGE_TAG" | default  (exec "../scripts/ocelot_image_tag.sh" (list) | trim) }}
+{{ $image_tag := env "IMAGE_TAG" | default  (exec "../scripts/branded_image_tag.sh" (list) | trim) }}
+{{ $image_tag := env "IMAGE_TAG" | default  (exec "../scripts/branded_image_tag.sh" (list) | trim) }}
+
+domain: yunite.me
+redirect_domains: | # i don't understand it, but its the way to get it to work: https://stackoverflow.com/a/52840704
+    ["www.yunite.me"]
+namespace: yunite-me-production
+#image_tag: {{ env "IMAGE_TAG" | default (printf "ocelot-%s--branded-%s" $ocelot_image_tag $branded_image_tag) }}
+image_tag: {{ $image_tag }}
+github_repository: yunite-net/yunite.me

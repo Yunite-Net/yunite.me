@@ -1,0 +1,7 @@
+{{ $image_tag := env "IMAGE_TAG" | default  (exec "../scripts/branded_image_tag.sh" (list) | trim) }}
+
+domain: yunite-me-staging.ocelot-social.it4c.org
+redirect_domains: []
+namespace: yunite-me
+image_tag: {{ $image_tag }}
+github_repository: yunite-net/yunite.me
