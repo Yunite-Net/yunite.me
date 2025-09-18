@@ -12,9 +12,12 @@ services:
       WEBSOCKETS_URI: ws://localhost:3000/api/graphql
       GRAPHQL_URI: http://backend:4000/
       MAPBOX_TOKEN: "pk.eyJ1IjoiYnVzZmFrdG9yIiwiYSI6ImNraDNiM3JxcDBhaWQydG1uczhpZWtpOW4ifQ.7TNRTO-o9aK1Y6MyW_Nd4g"
-      BADGES_ENABLED: "true"
-      PUBLIC_REGISTRATION: 'true'
-      CATEGORIES_ACTIVE: 'true'
+      PUBLIC_REGISTRATION: "true"
+      INVITE_REGISTRATION: "true"
+      CATEGORIES_ACTIVE: "true"
+      BADGES_ENABLED: "false"
+      NETWORK_NAME: "yunite.me"
+      ASK_FOR_REAL_NAME: "false"
     ports:
       - 3000:3000
     depends_on:
@@ -29,16 +32,24 @@ services:
       args:
         OCELOT_VERSION: ${OCELOT_VERSION:-master}
     environment:
-      CLIENT_URI: http://webapp:3000
+      CLIENT_URI: http://localhost:3000
       GRAPHQL_URI: http://backend:4000
       NEO4J_URI: bolt://neo4j:7687
       MAPBOX_TOKEN: "pk.eyJ1IjoiYnVzZmFrdG9yIiwiYSI6ImNraDNiM3JxcDBhaWQydG1uczhpZWtpOW4ifQ.7TNRTO-o9aK1Y6MyW_Nd4g"
       JWT_SECRET: "b/&&7b78BF&fv/Vd"
-      PRIVATE_KEY_PASSPHRASE: "a7dsf78sadg87ad87sfagsadg78"
-      BADGE_ATTRIBUTION_SERVICE_URL: 'http://badge-lookup:4000/badges'
-      BADGE_ATTRIBUTION_SERVICE_SECRET: 'SOME-SECRET'
-      PUBLIC_REGISTRATION: 'true'
-      CATEGORIES_ACTIVE: 'true'
+      PUBLIC_REGISTRATION: "true"
+      INVITE_REGISTRATION: "true"
+      CATEGORIES_ACTIVE: "true"
+      MAX_PINNED_POSTS: "1"
+      SMTP_HOST: "mailserver"
+      SMTP_PORT: "1025"
+      SMTP_IGNORE_TLS: "true"
+      SMTP_USERNAME:
+      SMTP_PASSWORD:
+      SMTP_MAX_CONNECTIONS: "1"
+      SMTP_MAX_MESSAGES: "10"
+      EMAIL_DEFAULT_SENDER: "hello@ocelot.social"
+      EMAIL_SUPPORT: "hello@ocelot.social"
     ports:
       - 4000:4000
     depends_on:

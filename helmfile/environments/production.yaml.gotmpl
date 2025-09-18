@@ -1,12 +1,23 @@
-#{{ $branded_image_tag:= env "BRANDED_IMAGE_TAG" | default (exec "../scripts/branded_image_tag.sh" (list) | trim) }}
-#{{ $ocelot_image_tag := env "OCELOT_IMAGE_TAG" | default  (exec "../scripts/ocelot_image_tag.sh" (list) | trim) }}
-{{ $image_tag := env "IMAGE_TAG" | default  (exec "../scripts/branded_image_tag.sh" (list) | trim) }}
 {{ $image_tag := env "IMAGE_TAG" | default  (exec "../scripts/branded_image_tag.sh" (list) | trim) }}
 
-domain: yunite.me
-redirect_domains: | # i don't understand it, but its the way to get it to work: https://stackoverflow.com/a/52840704
-    ["www.yunite.me"]
-namespace: yunite-me-production
-#image_tag: {{ env "IMAGE_TAG" | default (printf "ocelot-%s--branded-%s" $ocelot_image_tag $branded_image_tag) }}
-image_tag: {{ $image_tag }}
-github_repository: yunite-net/yunite.me
+deploy:
+    GITHUB_REPOSITORY: yunite-net/yunite.me
+    IMAGE_TAG: {{ $image_tag }}
+    DOMAIN: yunite.me
+    REDIRECT_DOMAINS: |
+        ["www.yunite.me"]
+    NAMESPACE: yunite-me-production
+    RELEASE_NAME_OCELOT: yunite-ocelot
+    NEO4J_STORAGE: "25Gi"
+
+ocelot:
+    options:
+        PRODUCTION_DB_CLEAN_ALLOW: "false"
+        PUBLIC_REGISTRATION: "true"
+        INVITE_REGISTRATION: "true"
+        CATEGORIES_ACTIVE: "true"
+        MAX_PINNED_POSTS: "1"
+        BADGES_ENABLED: "false"
+        NETWORK_NAME: "Yunite.me"
+        ASK_FOR_REAL_NAME: "false"
+        REQUIRE_LOCATION: "false"
