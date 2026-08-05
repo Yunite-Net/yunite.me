@@ -1,0 +1,43 @@
+/*
+ * Runtime theme for this brand: CSS custom properties, authored as CSS.
+ *
+ * This file is the only source for the theme. When packing the archive the build raises the `:root`
+ * selector below to `:root:root`, so these values outrank the framework defaults regardless of load
+ * order, and it reads `--color-primary` out for the PWA/browser-chrome colour. Every property the
+ * framework declares can be set here — the admin lists them under Branding → theme.
+ */
+
+/*
+ * Web fonts, as plain CSS. The url() is relative to THIS stylesheet, which the webapp serves from
+ * /branding/<id>/assets/css/ — so the browser resolves it to the brand's own fonts directory with
+ * no path rewriting by the build (which is what theme.fontFaces used to need).
+ */
+@font-face {
+  font-family: 'Overpass';
+  src: url('../fonts/Overpass-VariableFont_wght.ttf') format('truetype');
+}
+
+:root {
+  --color-primary: rgb(110, 139, 135);
+  --color-primary-hover: rgb(161, 179, 177);
+  --color-primary-active: rgb(81, 99, 97);
+  --color-primary-contrast: rgb(241, 248, 243);
+  --color-secondary: rgb(166, 255, 0);
+  --color-secondary-hover: rgb(188, 255, 130);
+  --color-secondary-active: rgb(140, 217, 0);
+  --color-secondary-contrast: rgb(241, 255, 225);
+  --font-family-heading: 'Overpass', Helvetica, Arial, sans-serif;
+  --font-family-text: 'Overpass', Helvetica, Arial, sans-serif;
+  /* Former _branding.scss token reassignments (header/footer/donation/chat) — derive from the */
+  /* brand base so they stay consistent. Footer/locale-menu are handled by branding.css rules. */
+  --color-header-background: var(--color-primary);
+  --color-donation-bar: var(--color-secondary);
+  --color-toast-green: var(--color-primary);
+  --chat-message-bg-me: rgb(161, 179, 177);
+  --chat-sidemenu-background-active: rgb(161, 179, 177);
+  --chat-new-message-color: rgb(188, 255, 130);
+  --chat-message-checkmark: rgb(250, 249, 250);
+  --chat-message-checkmark-seen: var(--color-secondary);
+  --chat-room-color-counter-badge: var(--color-primary);
+  --chat-room-background-counter-badge: var(--color-secondary);
+}

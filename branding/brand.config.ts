@@ -8,9 +8,10 @@
 // and the brand stylesheet, html/ = static page HTML per locale. Paths are ROOT-relative; the
 // multi-brand build namespaces them to /branding/yunite/… (collision-free).
 //
-// The whole theme applies at RUNTIME: colours + font families as `theme.cssVars`, the Overpass font
-// via `theme.fontFaces`, and the bespoke component rules as assets/css/branding.css (listed in
-// `assets.css`). Nothing here needs a webapp rebuild.
+// The whole theme applies at RUNTIME and is authored as CSS: colours and font families as a
+// `:root` block in assets/css/theme.css, the Overpass @font-face in the same file, and the bespoke
+// component rules in assets/css/branding.css. Both are listed under `assets.css`; the build folds
+// their `:root` declarations into the theme. Nothing here needs a webapp rebuild.
 //
 // NOT here: the auth cookie name. It used to be `metadata.cookieName: 'yunite-me-token'`, but a name
 // baked into the webapp bundle at BUILD time (@nuxtjs/apollo) can never follow a runtime-injected
@@ -66,37 +67,6 @@ export default defineBranding({
   // brandable SCSS tokens read var(--…). The Overpass font is loaded via @font-face from the served
   // assets folder.
   theme: {
-    cssVars: {
-      'color-primary': 'rgb(110, 139, 135)',
-      'color-primary-hover': 'rgb(161, 179, 177)',
-      'color-primary-active': 'rgb(81, 99, 97)',
-      'color-primary-contrast': 'rgb(241, 248, 243)',
-      'color-secondary': 'rgb(166, 255, 0)',
-      'color-secondary-hover': 'rgb(188, 255, 130)',
-      'color-secondary-active': 'rgb(140, 217, 0)',
-      'color-secondary-contrast': 'rgb(241, 255, 225)',
-      'font-family-heading': "'Overpass', Helvetica, Arial, sans-serif",
-      'font-family-text': "'Overpass', Helvetica, Arial, sans-serif",
-      // Former _branding.scss token reassignments (header/footer/donation/chat) — derive from the
-      // brand base so they stay consistent. Footer/locale-menu are handled by branding.css rules.
-      'color-header-background': 'var(--color-primary)',
-      'color-donation-bar': 'var(--color-secondary)',
-      'color-toast-green': 'var(--color-primary)',
-      'chat-message-bg-me': 'rgb(161, 179, 177)',
-      'chat-sidemenu-background-active': 'rgb(161, 179, 177)',
-      'chat-new-message-color': 'rgb(188, 255, 130)',
-      'chat-message-checkmark': 'rgb(250, 249, 250)',
-      'chat-message-checkmark-seen': 'var(--color-secondary)',
-      'chat-room-color-counter-badge': 'var(--color-primary)',
-      'chat-room-background-counter-badge': 'var(--color-secondary)',
-    },
-    fontFaces: [
-      {
-        family: 'Overpass',
-        src: 'assets/fonts/Overpass-VariableFont_wght.ttf',
-        format: 'truetype',
-      },
-    ],
   },
   logos: {
     headerPath: 'assets/logo-horizontal.svg',
@@ -137,7 +107,7 @@ export default defineBranding({
   },
   assets: {
     // Custom style overrides (formerly the raw CSS in _branding.scss), served + injected at runtime.
-    css: ['assets/css/branding.css'],
+    css: ['assets/css/theme.css', 'assets/css/branding.css'],
     html,
     favicon: 'assets/favicon.ico',
   },
